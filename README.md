@@ -16,4 +16,27 @@ A curated collection of modern front-end components powered by **Firebase**, ori
 ---
 
 ## 📂 Project Structure
+firebase-front-end-components/
+├── index.html # Main Firebase login UI
+├── style.css # Styles for UI components
+├── app.js # Firebase setup and functions
+├── firebase-config.js # Firebase credentials file
+└── README.md # You're here!
 
+
+---
+
+## 🔧 Setup & Usage
+
+1. **Clone the repo:**
+
+```bash
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "your-app.firebaseapp.com",
+  projectId: "your-app-id",
+  storageBucket: "your-app.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
