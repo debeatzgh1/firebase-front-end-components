@@ -32,7 +32,7 @@ firebase-front-end-components/
 
 ---
 
-## 🔧 Setup & Usage
+## 🔧 Firebase Setup & Usage
 
 1. **Clone the repo:**
 
