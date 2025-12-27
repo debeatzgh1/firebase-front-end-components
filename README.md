@@ -99,7 +99,7 @@ body{
 /* CLOSE BUTTON CENTER BOTTOM */
 #closeBtn{
   position:absolute;
-  bottom:75px;
+  bottom:25px;
   left:50%;
   transform:translateX(-50%);
   background:#ef4444;
