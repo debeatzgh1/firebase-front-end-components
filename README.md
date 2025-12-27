@@ -75,7 +75,7 @@ body{
   display:none;
   z-index:9999;
 }
-#viewer iframe{width:100%;height:100%;border:none}
+#viewer iframe{width:95%;height:100%;border:none}
 
 /* NAVIGATION CONTROLS AT BOTTOM */
 .controls-bottom{
@@ -96,7 +96,7 @@ body{
   font-size:1.3rem; /* Bigger icon */
 }
 
-/* CLOSE BUTTON CENTER BOTTOM */
+/* CLOSE BUTTONS RIGHT CENTER*/
 #closeBtn{
   position:absolute;
   bottom:25px;
