@@ -80,7 +80,7 @@ body{
 /* NAVIGATION CONTROLS AT BOTTOM */
 .controls-bottom{
   position:absolute;
-  bottom:25px;
+  bottom: 75px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
@@ -99,7 +99,7 @@ body{
 /* CLOSE BUTTON CENTER BOTTOM */
 #closeBtn{
   position:absolute;
-  bottom:25px;
+  bottom:75px;
   left:50%;
   transform:translateX(-50%);
   background:#ef4444;
