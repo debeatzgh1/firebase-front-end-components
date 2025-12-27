@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -75,7 +76,7 @@ body{
   display:none;
   z-index:9999;
 }
-#viewer iframe{width:95%;height:100%;border:none}
+#viewer iframe{width:100%;height:100%;border:none}
 
 /* NAVIGATION CONTROLS AT BOTTOM */
 .controls-bottom{
@@ -96,12 +97,12 @@ body{
   font-size:1.3rem; /* Bigger icon */
 }
 
-/* CLOSE BUTTONS RIGHT CENTER*/
+/* CLOSE BUTTON RIGHT CENTER */
 #closeBtn{
   position:absolute;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
+  top:50%;
+  right:25px;
+  transform:translateY(-50%);
   background:#ef4444;
   color:white;
   padding:12px 16px;
@@ -209,7 +210,7 @@ footer{
 <!-- VIEWER -->
 <div id="viewer">
   <iframe id="docFrame"></iframe>
-  <!-- CLOSE BUTTON CENTER BOTTOM -->
+  <!-- CLOSE BUTTON RIGHT CENTER -->
   <div id="closeBtn" onclick="closeViewer()">✕</div>
   <!-- NAVIGATION BUTTONS BOTTOM -->
   <div class="controls-bottom">
