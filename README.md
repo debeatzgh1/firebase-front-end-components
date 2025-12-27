@@ -80,7 +80,7 @@ body{
 /* NAVIGATION CONTROLS AT BOTTOM */
 .controls-bottom{
   position:absolute;
-  bottom: 75px;
+  bottom:25px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
@@ -109,35 +109,6 @@ body{
   cursor:pointer;
   z-index:10001;
   font-size:1.2rem;
-}
-
-/* FLOATING BUTTONS */
-#topLeftBtn{
-  position:fixed;
-  top:25px;
-  left:25px;
-  background:var(--secondary);
-  color:white;
-  padding:14px 18px;
-  border-radius:50%;
-  font-size:1.2rem;
-  cursor:pointer;
-  z-index:10001;
-  animation:heartbeat 2.8s infinite;
-}
-#rightCenterBtn{
-  position:fixed;
-  top:50%;
-  right:25px;
-  transform:translateY(-50%);
-  background:var(--secondary);
-  color:white;
-  padding:14px 18px;
-  border-radius:50%;
-  font-size:1.2rem;
-  cursor:pointer;
-  z-index:10001;
-  animation:heartbeat 2.8s infinite;
 }
 
 /* FOOTER */
@@ -248,10 +219,6 @@ footer{
   </div>
 </div>
 
-<!-- FLOATING BUTTONS -->
-<div id="topLeftBtn" onclick="openSmart('https://debeatzgh1.github.io/Debeatzgh-Collaborators-Hub/')">WP</div>
-<div id="rightCenterBtn" onclick="openSmart('https://msha.ke/debeatzgh')">MS</div>
-
 <footer>
 <p>© Digital Creators Hub – Debeatzgh</p>
 <p>Build • Learn • Monetize with AI</p>
@@ -297,7 +264,7 @@ function closeViewer(){
 
 // Shaking animation every 3s
 setInterval(()=>{
-  document.querySelectorAll('.btn, #topLeftBtn, #rightCenterBtn').forEach(btn=>{
+  document.querySelectorAll('.btn').forEach(btn=>{
     btn.style.animation='heartbeat 2.8s, shake 0.6s';
     setTimeout(()=>btn.style.animation='heartbeat 2.8s',600);
   });
