@@ -77,20 +77,37 @@ body{
 }
 #viewer iframe{width:100%;height:100%;border:none}
 
-.control{
+/* NAVIGATION CONTROLS AT BOTTOM */
+.controls-bottom{
   position:absolute;
-  top:15px;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:15px;
+  z-index:10000;
+}
+.controls-bottom .control{
   background:#020617;
   color:white;
   padding:10px 14px;
   border-radius:50%;
   cursor:pointer;
-  z-index:10000;
 }
-#closeBtn{left:15px;background:#ef4444}
-#backBtn{left:70px}
-#forwardBtn{left:125px}
-#fullscreenBtn{right:15px}
+
+/* CLOSE BUTTON CENTER BOTTOM */
+#closeBtn{
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#ef4444;
+  color:white;
+  padding:10px 14px;
+  border-radius:50%;
+  cursor:pointer;
+  z-index:10001;
+}
 
 /* FLOATING BUTTONS */
 #topLeftBtn{
@@ -217,11 +234,15 @@ footer{
 
 <!-- VIEWER -->
 <div id="viewer">
-  <div id="closeBtn" class="control" onclick="closeViewer()">✕</div>
-  <div id="backBtn" class="control" onclick="goBack()">⟵</div>
-  <div id="forwardBtn" class="control" onclick="goForward()">⟶</div>
-  <div id="fullscreenBtn" class="control" onclick="toggleFullscreen()">⛶</div>
   <iframe id="docFrame"></iframe>
+  <!-- CLOSE BUTTON CENTER BOTTOM -->
+  <div id="closeBtn" onclick="closeViewer()">✕</div>
+  <!-- NAVIGATION BUTTONS BOTTOM -->
+  <div class="controls-bottom">
+    <div class="control" onclick="goBack()">⟵</div>
+    <div class="control" onclick="goForward()">⟶</div>
+    <div class="control" onclick="toggleFullscreen()">⛶</div>
+  </div>
 </div>
 
 <!-- FLOATING BUTTONS -->
