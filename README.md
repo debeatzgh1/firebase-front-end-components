@@ -1,9 +1,8 @@
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Creators Hub – Build With AI</title>
+<title>Debeatzgh Digital Hub</title>
 
 <style>
 :root{
@@ -11,266 +10,240 @@
   --secondary:#16a34a;
   --dark:#020617;
 }
-body{
-  margin:0;
-  font-family:system-ui,Arial,sans-serif;
-  background:#f1f5f9;
-  color:#1e293b;
-}
+body{margin:0;font-family:system-ui,Arial,sans-serif}
 
-/* HERO */
-.hero{
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:white;
-  padding:70px 20px;
-  text-align:center;
-}
-.hero h1{margin:0;font-size:2.6rem}
-.hero p{max-width:900px;margin:15px auto;font-size:1.1rem}
-
-/* LAYOUT */
-.container{max-width:1200px;margin:auto;padding:30px}
-.section{
-  background:white;
-  padding:28px;
-  margin-bottom:30px;
-  border-radius:16px;
-  box-shadow:0 12px 35px rgba(0,0,0,.06);
-}
-.section h2{color:var(--primary);margin-top:0}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-.card{
-  background:#f8fafc;
-  padding:22px;
-  border-radius:14px;
-}
-
-/* BUTTONS */
-@keyframes heartbeat{0%{transform:scale(1)}14%{transform:scale(1.15)}28%{transform:scale(1)}}
-@keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-3px)}50%{transform:translateX(3px)}75%{transform:translateX(-3px)}100%{transform:translateX(0)}}
-
-.btn{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 18px;
+/* Floating launcher */
+#dbz-launcher{
+  position:fixed;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  width:48px;height:48px;
   background:var(--primary);
-  color:white;
-  border-radius:8px;
-  text-decoration:none;
-  font-size:.9rem;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
   cursor:pointer;
-  animation:heartbeat 2.8s infinite;
-  position:relative;
+  z-index:99999;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
 }
 
-/* IFRAME VIEWER */
-#viewer{
+/* Overlay */
+#dbz-overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.88);
+  background:rgba(0,0,0,.85);
   display:none;
-  z-index:9999;
+  z-index:99998;
 }
-#viewer iframe{width:100%;height:100%;border:none}
 
-/* NAVIGATION CONTROLS AT BOTTOM */
-.controls-bottom{
+/* App box */
+#dbz-box{
   position:absolute;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
+  inset:16px;
+  background:#fff;
+  border-radius:18px;
   display:flex;
-  gap:20px;
-  z-index:10000;
-}
-.controls-bottom .control{
-  background:#020617;
-  color:white;
-  padding:14px 18px; /* Bigger buttons */
-  border-radius:50%;
-  cursor:pointer;
-  font-size:1.3rem; /* Bigger icon */
+  flex-direction:column;
+  overflow:hidden;
 }
 
-/* CLOSE BUTTON RIGHT CENTER */
-#closeBtn{
-  position:absolute;
-  top:50%;
-  right:25px;
-  transform:translateY(-50%);
-  background:#ef4444;
-  color:white;
+/* Header */
+#dbz-header{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
   padding:12px 16px;
-  border-radius:50%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+#dbz-controls span{
+  margin-left:12px;
   cursor:pointer;
-  z-index:10001;
-  font-size:1.2rem;
+  font-size:18px;
 }
 
-/* FOOTER */
-footer{
-  background:#020617;
-  color:#cbd5f5;
-  padding:35px;
-  text-align:center;
+/* Section tabs */
+#dbz-sections{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  background:#f1f5f9;
+}
+#dbz-sections button{
+  border:none;
+  padding:6px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  background:#e5e7eb;
+  font-size:13px;
+}
+#dbz-sections button.active{
+  background:var(--primary);
+  color:#fff;
+}
+
+/* Section description */
+#dbz-desc{
+  padding:10px 16px;
+  background:#f8fafc;
+  font-size:13px;
+  color:#475569;
+}
+
+/* Tabs */
+#dbz-tabs{
+  display:flex;
+  gap:6px;
+  padding:8px;
+  background:#f1f5f9;
+  overflow-x:auto;
+}
+#dbz-tabs button{
+  border:none;
+  padding:5px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  background:#e5e7eb;
+  font-size:12px;
+  white-space:nowrap;
+}
+#dbz-tabs button.active{
+  background:var(--secondary);
+  color:#fff;
+}
+
+/* Iframe */
+#dbz-frame{
+  flex:1;
+  border:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Digital Creators Hub</h1>
-  <p>Treasure troves for startups, creators, and entrepreneurs who want to build successful digital assets and online presence from scratch.</p>
-</div>
+<!-- Floating Button -->
+<div id="dbz-launcher" title="Open Debeatzgh Hub">☰</div>
 
-<div class="container">
+<!-- Overlay App -->
+<div id="dbz-overlay">
+  <div id="dbz-box">
 
-<!-- CONTENT BUTTONS -->
-<div class="section">
-<h2>🌐 Explore Our Tools & Guides</h2>
-<div class="grid">
+    <div id="dbz-header">
+      <strong>Debeatzgh Digital Hub</strong>
+      <div id="dbz-controls">
+        <span id="dbz-back">⟵</span>
+        <span id="dbz-forward">⟶</span>
+        <span id="dbz-full">⛶</span>
+        <span id="dbz-close">✕</span>
+      </div>
+    </div>
 
-<div class="card">
-<h3>Collaborators Hub</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Debeatzgh-Collaborators-Hub/')">Open</button>
-</div>
+    <div id="dbz-sections"></div>
+    <div id="dbz-desc"></div>
+    <div id="dbz-tabs"></div>
 
-<div class="card">
-<h3>AI Starter Kit</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Decode-AI-starter-kit-/')">Open</button>
-</div>
+    <iframe id="dbz-frame"></iframe>
 
-<div class="card">
-<h3>Side Hustle Guide</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/The-Ultimate-Guide-to-Side-Hustle/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Sales Strategies</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/sales/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Online Business Kit</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Online-business-kit/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Home Hub</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Home-/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Productivity Web App</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Improve-productivity-with-AI-Web-App-project-/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Menu Widget</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/menu-widget-/')">Open</button>
-</div>
-
-<div class="card">
-<h3>AI Chat</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/ai-chat/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Games</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/games-/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Flashcards Widget</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Floating-Flashcards-Widget/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Docs Carousel</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/Docs-Carousel-for-Blogger/')">Open</button>
-</div>
-
-<div class="card">
-<h3>Posts</h3>
-<button class="btn" onclick="openSmart('https://debeatzgh1.github.io/posts/')">Open</button>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<!-- VIEWER -->
-<div id="viewer">
-  <iframe id="docFrame"></iframe>
-  <!-- CLOSE BUTTON RIGHT CENTER -->
-  <div id="closeBtn" onclick="closeViewer()">✕</div>
-  <!-- NAVIGATION BUTTONS BOTTOM -->
-  <div class="controls-bottom">
-    <div class="control" onclick="goBack()">⟵</div>
-    <div class="control" onclick="goForward()">⟶</div>
-    <div class="control" onclick="toggleFullscreen()">⛶</div>
   </div>
 </div>
 
-<footer>
-<p>© Digital Creators Hub – Debeatzgh</p>
-<p>Build • Learn • Monetize with AI</p>
-</footer>
-
 <script>
-let historyStack=[],historyIndex=-1;
-
-// Open URL in iframe or new tab for ads
-function openSmart(url){
-  const wpAdDomains=["ads.com","doubleclick.net","googleads"];
-  const isWPAd=wpAdDomains.some(d=>url.includes(d));
-
-  if(isWPAd){
-    window.open(url,'_blank');
-    return;
-  }
-
-  document.getElementById('viewer').style.display='block';
-  loadUrl(url,true);
+/* ===================== DATA ===================== */
+const SECTIONS = [
+{
+  title:"🚀 Core Platforms",
+  desc:"Start here. These are the foundation tools to build your digital presence and income streams.",
+  tabs:[
+    ["Home","https://debeatzgh1.github.io/1/"],
+    ["Blog","https://debeatzgh.wordpress.com/"],
+    ["AI Chat","https://debeatzgh1.github.io/ai-chat/"],
+    ["Tools Hub","https://debeatzgh1.github.io/Home-/"],
+    ["Milkshake","https://msha.ke/debeatzgh"]
+  ]
+},
+{
+  title:"🧩 Apps & Utilities",
+  desc:"Interactive tools and widgets to boost productivity, creativity, and learning.",
+  tabs:[
+    ["Collaborators","https://debeatzgh1.github.io/Debeatzgh-Collaborators-Hub/"],
+    ["AI Starter Kit","https://debeatzgh1.github.io/Decode-AI-starter-kit-/"],
+    ["Productivity App","https://debeatzgh1.github.io/Improve-productivity-with-AI-Web-App-project-/"],
+    ["Menu Widget","https://debeatzgh1.github.io/menu-widget-/"],
+    ["Flashcards","https://debeatzgh1.github.io/Floating-Flashcards-Widget/"],
+    ["Docs Carousel","https://debeatzgh1.github.io/Docs-Carousel-for-Blogger/"]
+  ]
+},
+{
+  title:"📚 Resource Vault",
+  desc:"Everything in one place. Guides, business kits, games, posts, and monetization resources.",
+  tabs:[
+    ["Side Hustle Guide","https://debeatzgh1.github.io/The-Ultimate-Guide-to-Side-Hustle/"],
+    ["Sales Strategies","https://debeatzgh1.github.io/sales/"],
+    ["Online Business Kit","https://debeatzgh1.github.io/Online-business-kit/"],
+    ["Games","https://debeatzgh1.github.io/games-/"],
+    ["Posts","https://debeatzgh1.github.io/posts/"],
+    ["Home Hub","https://debeatzgh1.github.io/Home-/"]
+  ]
 }
+];
 
-function loadUrl(url,push){
-  document.getElementById('docFrame').src=url;
-  if(push){
-    historyStack=historyStack.slice(0,historyIndex+1);
-    historyStack.push(url);
-    historyIndex++;
-  }
-}
+/* ===================== LOGIC ===================== */
+const overlay=document.getElementById("dbz-overlay");
+const frame=document.getElementById("dbz-frame");
+const sectionsBox=document.getElementById("dbz-sections");
+const tabsBox=document.getElementById("dbz-tabs");
+const descBox=document.getElementById("dbz-desc");
 
-function goBack(){if(historyIndex>0){historyIndex--;loadUrl(historyStack[historyIndex],false)}}
-function goForward(){if(historyIndex<historyStack.length-1){historyIndex++;loadUrl(historyStack[historyIndex],false)}}
-function toggleFullscreen(){
-  const v=document.getElementById('viewer');
-  if(!document.fullscreenElement){v.requestFullscreen().catch(()=>{})}
-  else{document.exitFullscreen()}
-}
-function closeViewer(){
-  document.getElementById('viewer').style.display='none';
-  document.getElementById('docFrame').src='';
-}
+document.getElementById("dbz-launcher").onclick=()=>overlay.style.display="block";
+document.getElementById("dbz-close").onclick=()=>{
+  overlay.style.display="none";
+  frame.src="";
+};
 
-// Shaking animation every 3s
-setInterval(()=>{
-  document.querySelectorAll('.btn').forEach(btn=>{
-    btn.style.animation='heartbeat 2.8s, shake 0.6s';
-    setTimeout(()=>btn.style.animation='heartbeat 2.8s',600);
+document.getElementById("dbz-back").onclick=()=>{try{frame.contentWindow.history.back()}catch(e){}};
+document.getElementById("dbz-forward").onclick=()=>{try{frame.contentWindow.history.forward()}catch(e){}};
+document.getElementById("dbz-full").onclick=()=>{
+  const box=document.getElementById("dbz-box");
+  !document.fullscreenElement ? box.requestFullscreen() : document.exitFullscreen();
+};
+
+function loadSection(i){
+  sectionsBox.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+  sectionsBox.children[i].classList.add("active");
+
+  descBox.textContent=SECTIONS[i].desc;
+  tabsBox.innerHTML="";
+
+  SECTIONS[i].tabs.forEach((t,j)=>{
+    const btn=document.createElement("button");
+    btn.textContent=t[0];
+    btn.onclick=()=>{
+      frame.src=t[1];
+      tabsBox.querySelectorAll("button").forEach(x=>x.classList.remove("active"));
+      btn.classList.add("active");
+    };
+    if(j===0){
+      btn.classList.add("active");
+      frame.src=t[1];
+    }
+    tabsBox.appendChild(btn);
   });
-},3000);
+}
 
+SECTIONS.forEach((s,i)=>{
+  const b=document.createElement("button");
+  b.textContent=s.title;
+  if(i===0)b.classList.add("active");
+  b.onclick=()=>loadSection(i);
+  sectionsBox.appendChild(b);
+});
+
+loadSection(0);
 </script>
 
 </body>
