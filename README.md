@@ -134,7 +134,7 @@ body{margin:0;font-family:system-ui,Arial,sans-serif}
   <div id="dbz-box">
 
     <div id="dbz-header">
-      <strong>Debeatzgh Digital Hub</strong>
+      <strong>Digital Creators Hub</strong>
       <div id="dbz-controls">
         <span id="dbz-back">⟵</span>
         <span id="dbz-forward">⟶</span>
@@ -163,7 +163,7 @@ const SECTIONS = [
     ["Blog","https://debeatzgh.wordpress.com/"],
     ["AI Chat","https://debeatzgh1.github.io/ai-chat/"],
     ["Tools Hub","https://debeatzgh1.github.io/Home-/"],
-    ["Milkshake","https://msha.ke/debeatzgh"]
+    ["WEBSITE","https://msha.ke/debeatzgh"]
   ]
 },
 {
