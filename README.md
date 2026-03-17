@@ -3,180 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleek Floating Banner</title>
     <style>
-        :root {
-            --ui-accent: #00f2ff; /* Cyber Cyan */
-            --ui-bg: rgba(10, 10, 12, 0.9);
-            --ui-glow: rgba(0, 242, 255, 0.4);
-            --text-light: #f0f6fc;
+        /* Modern CSS reset for consistency */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* --- TOPMOST FLOATING BANNER --- */
-        .ui-browser-banner {
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 200vh; /* Adds scrollable height to visualize the fixed positioning */
+            background-color: #121212; /* A dark, neutral background */
+            color: #fff;
+        }
+
+        /* MAIN FLOATING BANNER CONTAINER
+           Fixed to the top center of the screen
+        */
+        #sleek-floating-banner {
             position: fixed;
-            top: 10px;
+            top: 20px; /* Slight offset from the top border */
             left: 50%;
-            transform: translateX(-50%);
-            width: 310px;
-            height: 48px;
-            background: var(--ui-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 12px;
+            transform: translateX(-50%); /* Centers horizontally */
+            width: 340px; /* Compact, friendly width for desktop/mobile */
+            height: 52px;
+            background: rgba(30, 30, 30, 0.9); /* Dark semi-transparent background */
+            backdrop-filter: blur(10px); /* Modern 'glassmorphism' effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle outline */
+            border-radius: 50px; /* Fully rounded edges for a sleek pill look */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Strong shadow for depth */
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 8px 0 15px;
-            z-index: 10001; /* Higher than other banners */
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 10px var(--ui-glow);
-            overflow: hidden;
+            justify-content: space-between; /* Icon+Text on left, button on right */
+            padding: 0 6px 0 16px; /* Optimized padding for the components */
+            z-index: 10000; /* Ensures it stays above all other content */
+            overflow: hidden; /* Needed for the marquee slide effect */
+            
+            /* Entry animation */
+            animation: bannerEntry 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
-        /* Auto-Slide Text Container */
-        .ui-slider-box {
+        /* Hover effect to highlight the interactive nature */
+        #sleek-floating-banner:hover {
+            transform: translateX(-50%) scale(1.03);
+            border-color: #FF1493; /* DeepPink border highlight on hover */
+        }
+
+        /* Banner entry animation (slides in and bounces slightly) */
+        @keyframes bannerEntry {
+            from { top: -60px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+
+        /* --- MARQUEE SLIDER STYLES --- */
+        .banner-text-slider {
             flex: 1;
-            overflow: hidden;
+            height: 22px; /* Set height to constrain the text */
+            overflow: hidden; /* Masks text outside the area */
             position: relative;
-            height: 20px;
-            margin-right: 10px;
+            margin-right: 12px;
         }
 
-        .ui-slider-content {
+        .slide-inner {
             display: flex;
-            flex-direction: column;
-            animation: slideText 6s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+            flex-direction: column; /* Stacks text vertically for sliding */
+            animation: verticalSlide 8s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
         }
 
-        .ui-slider-content span {
-            height: 20px;
-            font-family: 'Monaco', 'Consolas', monospace;
+        /* Text element properties */
+        .slide-inner span {
+            height: 22px; /* Matches parent height */
+            color: rgba(255, 255, 255, 0.9); /* Slightly off-white for better readability */
+            font-size: 0.8rem;
+            font-weight: 600; /* Semi-bold */
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Gap for the indicator dot */
+            white-space: nowrap; /* Prevents text wrapping */
+        }
+
+        /* Color highlight for key inscriptions */
+        .highlight-text {
+            color: #FF1493; /* DeepPink */
+        }
+
+        /* Subtle animated dot for live status feel */
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #FF1493;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+            animation: pulseDot 1.5s infinite;
+        }
+
+        /* Pulse animation for the live dot */
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.2); }
+        }
+
+        /* Vertical Slide Keyframes:
+           4 states (3 texts + return to 1). 
+           Uses percentages to control pause duration at each state.
+        */
+        @keyframes verticalSlide {
+            0%, 22% { transform: translateY(0); } /* Pauses on Text 1 */
+            33%, 55% { transform: translateY(-22px); } /* Slides to and Pauses on Text 2 */
+            66%, 88% { transform: translateY(-44px); } /* Slides to and Pauses on Text 3 */
+            100% { transform: translateY(0); } /* Loops back to Text 1 smoothly */
+        }
+
+        /* --- BUTTON STYLES --- */
+        .launch-btn {
+            background-color: #FF1493; /* Vibrant DeepPink for main color */
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 25px; /* Rounded pill style to match banner */
             font-size: 0.75rem;
-            color: var(--ui-accent);
+            font-weight: 900; /* Extra bold text for contrast */
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none; /* Removes underline for <a> tags */
             display: flex;
             align-items: center;
             gap: 6px;
-            letter-spacing: 1px;
-            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3); /* Soft DeepPink glow */
         }
 
-        /* Action Button */
-        .ui-open-btn {
-            background: var(--ui-accent);
-            color: #000;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 900;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        /* Button interaction effects */
+        .launch-btn:hover {
+            background-color: #ff50ac; /* Lighter DeepPink on hover */
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5); /* Stronger DeepPink glow */
         }
 
-        .ui-open-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 15px #fff;
-            transform: scale(1.05);
+        .launch-btn:active {
+            transform: translateY(1px) scale(0.98); /* Click interaction feedback */
         }
 
-        /* --- OVERLAY IFRAME --- */
-        #ui-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.95);
-            display: none;
-            flex-direction: column;
-            z-index: 20000;
-            animation: overlayFade 0.4s ease;
+        /* --- SVG ICON STYLE --- */
+        .arrow-icon {
+            width: 13px;
+            height: 13px;
+            fill: none;
+            stroke: currentColor; /* Matches text color (#fff) */
+            stroke-width: 3;
+            transition: transform 0.3s ease;
         }
 
-        .ui-overlay-nav {
-            height: 50px;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            border-bottom: 2px solid var(--ui-accent);
-        }
-
-        .ui-frame {
-            width: 100%;
-            flex-grow: 1;
-            border: none;
-            background: #fff;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes slideText {
-            0%, 20% { transform: translateY(0); }
-            33%, 53% { transform: translateY(-20px); }
-            66%, 86% { transform: translateY(-40px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes overlayFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .pulse-icon {
-            width: 6px;
-            height: 6px;
-            background: var(--ui-accent);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--ui-accent);
+        /* Hover animation specifically for the icon */
+        .launch-btn:hover .arrow-icon {
+            transform: translateX(3px); /* Arrow nudges right on hover */
         }
     </style>
 </head>
 <body>
 
-    <div class="ui-browser-banner">
-        <div class="ui-slider-box">
-            <div class="ui-slider-content">
-                <span><div class="pulse-icon"></div> Browse UI & Interfaces</span>
-                <span><div class="pulse-icon"></div> Discover Experience</span>
-                <span><div class="pulse-icon"></div> Portfolio Access</span>
+    <div id="sleek-floating-banner" onclick="openHomeLink()">
+        <div class="banner-text-slider">
+            <div class="slide-inner">
+                <span>
+                    <div class="live-dot"></div> 
+                    DeBeatz<span class="highlight-text">GH</span> Resource Hub
+                </span>
+                <span>
+                    <div class="live-dot"></div>
+                    Lifestyle <span class="highlight-text">&</span> Strategy
+                </span>
+                <span>
+                    <div class="live-dot"></div>
+                    Latest updates are <span class="highlight-text">Live</span>
+                </span>
             </div>
         </div>
-        <button class="ui-open-btn" onclick="openUIHub()">
-            Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
+        <button class="launch-btn" onclick="openHomeLink(event)">
+            OPEN 
+            <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
         </button>
     </div>
 
-    <div id="ui-overlay">
-        <div class="ui-overlay-nav">
-            <span style="color: var(--ui-accent); font-family: monospace; font-weight: bold; font-size: 0.8rem;">DEBEATZGH // UI_INTERFACES</span>
-            <button onclick="closeUIHub()" style="background:none; border: 1px solid #444; color: #888; padding: 4px 12px; cursor: pointer; border-radius: 4px; font-size: 0.7rem;">CLOSE [ESC]</button>
-        </div>
-        <iframe class="ui-frame" id="ui-iframe"></iframe>
-    </div>
-
     <script>
-        const uiOverlay = document.getElementById('ui-overlay');
-        const uiIframe = document.getElementById('ui-iframe');
-
-        function openUIHub() {
-            uiIframe.src = "https://form.svhrt.com/60f4a0aeedc1993c8c7b3989";
-            uiOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+        /**
+         * Opens the specified URL in a new tab without navigating
+         * away from the current page.
+         * @param {Event} e - Optional event object to prevent bubbling.
+         */
+        function openHomeLink(e) {
+            // Check if event exists and stop propagation so clicking the button
+            // doesn't also trigger the banner's onclick.
+            if (e && e.stopPropagation) {
+                e.stopPropagation();
+            }
+            
+            // window.open(url, '_blank') opens in a new tab.
+            window.open("https://debeatzgh1.github.io/Home-/", "_blank");
         }
-
-        function closeUIHub() {
-            uiOverlay.style.display = 'none';
-            uiIframe.src = "";
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") closeUIHub();
-        });
     </script>
+
 </body>
 </html>
 
