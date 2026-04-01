@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeBeatzGH | Digital Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        :root {
+            --cyber-cyan: #00f2ff;
+        }
+
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+
+        /* --- HERO SECTION (70%) --- */
+        .hero-section {
+            height: 75vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .cta-minimal {
+            margin-top: 30px;
+            padding: 12px 40px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .cta-minimal:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* --- SERVICE CARDS (Section 2) --- */
+        .card {
+            background: #fff;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f1f5f9;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-color: var(--cyber-cyan);
+        }
+
+        /* --- IFRAME MODAL COMMANDS --- */
+        .modal-controls {
+            position: fixed; top: 20px; left: 20px;
+            display: none; flex-direction: row; gap: 10px; z-index: 10001;
+            background: rgba(13, 17, 23, 0.9); padding: 8px; border-radius: 12px;
+            border: 1px solid var(--cyber-cyan); backdrop-filter: blur(10px);
+        }
+
+        #portal-modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            display: none; z-index: 10000; padding: 60px 20px 20px 20px;
+        }
+
+        .iframe-container {
+            width: 100%; height: 100%; background: #fff;
+            border-radius: 20px; overflow: hidden; border: 2px solid var(--cyber-cyan);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <div class="modal-controls" id="mControls">
+        <button class="w-10 h-10 flex items-center justify-center text-cyan-400 border border-cyan-400/20 rounded-lg hover:bg-cyan-400 hover:text-black transition" onclick="closePortal()">✕</button>
+        <button class="w-10 h-10 flex items-center justify-center text-cyan-400 border border-cyan-400/20 rounded-lg hover:bg-cyan-400 hover:text-black transition" onclick="toggleFS()">⛶</button>
+    </div>
+
+    <header class="hero-section">
+        <div class="px-4">
+            <p class="text-cyan-400 font-bold tracking-widest mb-4 uppercase text-sm">Innovate with AI</p>
+            <h1 class="hero-title">Decode the <br><span class="text-transparent" style="-webkit-text-stroke: 1px #fff;">Future</span></h1>
+            <button class="cta-minimal" onclick="document.getElementById('services').scrollIntoView()">Explore Ecosystem</button>
+        </div>
+    </header>
+
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+            <div>
+                <h2 class="text-4xl font-black text-slate-900 uppercase">Core Nodes</h2>
+                <div class="w-20 h-1 bg-cyan-400 mt-4"></div>
+            </div>
+            <p class="text-slate-500 max-w-xs mt-4 md:mt-0">Premium digital infrastructure designed for growth and automation.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card p-10 rounded-3xl cursor-pointer" onclick="openPortal('https://debeatzgh1.github.io/Debeatzgh-Collaborators-Hub/')">
+                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-8">
+                    <i class="fas fa-users text-2xl text-slate-800"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Collaborators Hub</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">Connect with elite digital strategists and build unified tech solutions.</p>
+                <span class="text-xs font-black tracking-widest text-cyan-500 uppercase">Launch Node →</span>
+            </div>
+
+            <div class="card p-10 rounded-3xl cursor-pointer" onclick="openPortal('https://debeatzgh1.github.io/Decode-AI-starter-kit-/')">
+                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-8">
+                    <i class="fas fa-robot text-2xl text-slate-800"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">AI Starter Kit</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">The ultimate framework for mastering AI-driven digital product creation.</p>
+                <span class="text-xs font-black tracking-widest text-cyan-500 uppercase">Access Tools →</span>
+            </div>
+
+            <div class="card p-10 rounded-3xl cursor-pointer" onclick="openPortal('https://debeatzgh1.github.io/The-Ultimate-Guide-to-Side-Hustle/')">
+                <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-8">
+                    <i class="fas fa-briefcase text-2xl text-slate-800"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Side Hustle Guide</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">Proven blueprints for generating online revenue in the Ghanaian context.</p>
+                <span class="text-xs font-black tracking-widest text-cyan-500 uppercase">Open Blueprint →</span>
+            </div>
+        </div>
+    </section>
+
+    <div id="portal-modal">
+        <div class="iframe-container" id="iframeWrap">
+            <iframe id="portal-frame" src="" class="w-full h-full border-none"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('portal-modal');
+        const frame = document.getElementById('portal-frame');
+        const controls = document.getElementById('mControls');
+
+        function openPortal(url) {
+            frame.src = url;
+            modal.style.display = 'block';
+            controls.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePortal() {
+            modal.style.display = 'none';
+            controls.style.display = 'none';
+            frame.src = "";
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleFS() {
+            const wrap = document.getElementById('iframeWrap');
+            if (!document.fullscreenElement) {
+                wrap.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
