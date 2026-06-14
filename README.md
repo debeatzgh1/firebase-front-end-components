@@ -134,14 +134,14 @@ body{
   left:50%;
   transform:translateX(-50%);
   display:flex;
-  gap:20px;
+  gap:14px;
   z-index:10000;
 }
 .controls-bottom .control{
   background:#020617;
   color:white;
-  padding:14px 18px; /* Bigger buttons */
-  border-radius:50%;
+  padding:10px 14px; /* Bigger buttons */
+  border-radius:30%;
   cursor:pointer;
   font-size:1.3rem; /* Bigger icon */
 }
@@ -149,8 +149,8 @@ body{
 /* CLOSE BUTTON RIGHT CENTER */
 #closeBtn{
   position:absolute;
-  top:50%;
-  right:25px;
+  top:30%;
+  right:16px;
   transform:translateY(-50%);
   background:#ef4444;
   color:white;
