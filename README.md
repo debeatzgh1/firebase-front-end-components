@@ -26,7 +26,7 @@
 
         <!-- Embedded Frame Target Node -->
         <iframe 
-            src="https://debeatzgh1.github.io/Home-/" 
+            src="https://msha.ke/debeatzgh#links-1" 
             style="width: 120%; height: 120%; border: none; opacity: 0; transition: opacity 0.3s ease;" 
             allow="geolocation; microphone; camera; midi; encrypted-media;"
             sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin allow-top-navigation-by-user-activation"
