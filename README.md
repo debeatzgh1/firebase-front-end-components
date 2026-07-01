@@ -286,7 +286,7 @@ body{
 /* CLOSE BUTTON RIGHT CENTER */
 #closeBtn{
   position:absolute;
-  bottom:25%;
+  top:30%;
   right:16px;
   transform:translateY(-50%);
   background:#ef4444;
